@@ -1,0 +1,154 @@
+/* =======================
+   FONT IMPORT
+   ======================= */
+@font-face {
+  font-family: "BOUNDY";
+  src: url("../assets/fonts/BOUNDY.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* =======================
+   FIXED HEADER WRAPPER
+   ======================= */
+.header {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+}
+
+/* =======================
+   HEADER CARD (NO BAR)
+   ======================= */
+.header-card {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 8px 0;
+  background: transparent;
+  border-radius: 0;
+  border-bottom: none;
+  box-shadow: none;
+  position: relative;
+  overflow: visible;
+}
+
+/* =======================
+   INNER LAYOUT
+   ======================= */
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 40px;
+}
+
+.header-logo {
+  display: none !important;
+}
+
+/* =======================
+   NAV WRAPPER
+   ======================= */
+.header-nav-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+/* =======================
+   NAV – TEXT MENU
+   ======================= */
+.header-nav {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0;
+}
+
+/* base link style */
+.header-nav a {
+  font-family: "BOUNDY", sans-serif;
+  position: relative;
+  text-decoration: none;
+  color: #ffffff;
+
+  font-size: 25px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+
+  padding: 4px 6px;
+  white-space: nowrap;
+
+  text-shadow:
+    0 0 3px rgba(0, 0, 0, 0.8),
+    0 0 6px rgba(0, 0, 0, 0.6);
+
+  transition:
+    color 0.15s ease,
+    transform 0.15s ease,
+    text-shadow 0.15s ease;
+}
+
+/* ================================================
+   FIXED: SEPARATORS THAT DO NOT GLOW ON HOVER
+   ================================================ */
+.header-nav a + a::before {
+  content: "-";
+  margin: 0 10px;
+  color: rgba(255, 255, 255, 0.6);  /* dimmer */
+  text-shadow: none !important;     /* NEVER glow */
+  pointer-events: none;             /* ignore hover */
+  filter: none !important;          /* stays clean */
+}
+
+/* ================================================
+   HOVER — ONLY THE TEXT GLOWS (NOT THE DASHES)
+   ================================================ */
+.header-nav a:hover {
+  transform: translateY(-1px);
+  color: #ffffff;
+  text-shadow:
+    0 0 10px rgba(255, 255, 255, 1),
+    0 0 18px rgba(255, 255, 255, 0.8);
+}
+
+/* active (neutralized) */
+.header-nav a.active {
+  text-shadow:
+    0 0 3px rgba(0, 0, 0, 0.8),
+    0 0 6px rgba(0, 0, 0, 0.6);
+}
+
+.nav-pill {
+  all: unset;
+}
+
+/* =======================
+   RESPONSIVE
+   ======================= */
+@media (max-width: 768px) {
+  .header-card {
+    padding: 6px 0;
+  }
+
+  .header-inner {
+    padding: 0 12px;
+  }
+
+  .header-nav {
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .header-nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .header-nav a {
+    font-size: 12px;
+    padding: 4px 4px;
+  }
+}

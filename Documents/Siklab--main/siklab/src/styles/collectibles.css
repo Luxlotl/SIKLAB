@@ -1,0 +1,235 @@
+/* =========================
+   COLLECTIBLES SECTION
+   ========================= */
+.collectibles-section {
+  min-height: 100vh;
+  padding: 120px 80px 80px; /* top padding for fixed header */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  color: #ffffff;
+}
+
+/* ✨ animation gets applied when .show is added */
+.collectibles-section.show {
+  animation: collectiblesEnter 0.7s ease-out forwards;
+}
+
+/* keyframes: fade + slide up */
+@keyframes collectiblesEnter {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.collectibles-inner {
+  max-width: 1200px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.1fr);
+  gap: 40px;
+}
+
+/* =========================
+   LEFT INFO PANEL
+   ========================= */
+.collectibles-info {
+  background: radial-gradient(circle at top left, rgba(0, 0, 0, 0.45), transparent 65%),
+    rgba(12, 12, 20, 0.78);
+  padding: 32px 32px 28px;
+  border-radius: 24px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.collectibles-label {
+  font-size: 18px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  opacity: 0.9;
+  margin: 0 0 8px;
+}
+
+.collectibles-title {
+  font-size: 32px;
+  margin: 0 0 18px;
+}
+
+.collectibles-text {
+  font-size: 15px;
+  line-height: 1.6;
+  opacity: 0.92;
+  margin: 0 0 10px;
+}
+
+/* =========================
+   RIGHT GRID PANEL
+   ========================= */
+.collectibles-grid-panel {
+  background: rgba(12, 12, 20, 0.65);
+  border-radius: 24px;
+  padding: 22px 22px 24px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(16px);
+}
+
+.collectibles-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+/* =========================
+   FLIP CARD BASE
+   ========================= */
+.trinket-card {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  border: none;
+  padding: 0;
+  background: transparent;
+  cursor: pointer;
+  perspective: 1000px; /* enables 3D */
+}
+
+.trinket-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.35s ease;
+}
+
+.trinket-card.is-flipped .trinket-card-inner {
+  transform: rotateY(180deg);
+}
+
+.trinket-card-face {
+  position: absolute;
+  inset: 0;
+  border-radius: 18px;
+  box-sizing: border-box;
+  padding: 16px 14px;
+  backface-visibility: hidden;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 8px;
+
+  font-size: 13px;
+}
+
+/* FRONT */
+.trinket-card-front {
+  background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.18), transparent 60%),
+    rgba(10, 10, 25, 0.96);
+  box-shadow:
+    0 14px 26px rgba(0, 0, 0, 0.85),
+    0 0 0 1px rgba(255, 255, 255, 0.12);
+}
+
+.trinket-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  background: radial-gradient(circle at 30% 30%, #ffeab8, #ff6b3d);
+  box-shadow:
+    0 0 12px rgba(255, 190, 120, 0.9),
+    0 0 24px rgba(255, 120, 60, 0.7);
+  margin-bottom: 4px;
+}
+
+.trinket-card-front h3 {
+  font-size: 14px;
+  margin: 0;
+}
+
+.trinket-card-front p {
+  margin: 0;
+  opacity: 0.9;
+}
+
+/* BACK */
+.trinket-card-back {
+  background: radial-gradient(circle at bottom right, rgba(0, 245, 255, 0.16), transparent 60%),
+    rgba(6, 6, 18, 0.98);
+  box-shadow:
+    0 14px 26px rgba(0, 0, 0, 0.85),
+    0 0 0 1px rgba(0, 245, 255, 0.35);
+  transform: rotateY(180deg);
+}
+
+.trinket-card-back h3 {
+  font-size: 14px;
+  margin: 0 0 4px;
+}
+
+.trinket-card-back p {
+  margin: 0;
+  line-height: 1.5;
+  opacity: 0.95;
+}
+
+/* flip hint */
+.flip-hint {
+  margin-top: auto;
+  font-size: 11px;
+  opacity: 0.7;
+}
+
+/* =========================
+   HOVER EFFECTS
+   ========================= */
+.trinket-card:hover .trinket-card-inner {
+  transform: translateY(-2px) scale(1.015);
+}
+
+.trinket-card:hover .trinket-card-front,
+.trinket-card.is-flipped:hover .trinket-card-back {
+  box-shadow:
+    0 18px 32px rgba(0, 0, 0, 0.95),
+    0 0 0 1px rgba(255, 255, 255, 0.3);
+}
+
+/* =========================
+   RESPONSIVE
+   ========================= */
+@media (max-width: 1024px) {
+  .collectibles-section {
+    padding: 110px 40px 60px;
+  }
+
+  .collectibles-inner {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .collectibles-grid-panel {
+    margin-top: 12px;
+  }
+}
+
+@media (max-width: 768px) {
+  .collectibles-section {
+    padding: 96px 20px 52px;
+  }
+
+  .collectibles-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 480px) {
+  .collectibles-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
