@@ -37,10 +37,13 @@
 /* =======================
    INNER LAYOUT
    ======================= */
+/* ✅ wrap + right align so it works for all widths */
 .header-inner {
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: flex-end; /* keeps everything on the right */
+  flex-wrap: wrap;           /* ✅ responsive */
+  gap: 10px;                 /* ✅ brings nav closer to buttons */
   padding: 0 40px;
 }
 
@@ -51,10 +54,12 @@
 /* =======================
    NAV WRAPPER
    ======================= */
+/* ✅ REMOVE width: 100% so it doesn't push away from buttons */
 .header-nav-wrapper {
   display: flex;
   justify-content: flex-end;
-  width: 100%;
+  width: auto;        /* ✅ changed */
+  flex: 0 0 auto;     /* ✅ changed */
 }
 
 /* =======================
@@ -92,21 +97,17 @@
     text-shadow 0.15s ease;
 }
 
-/* ================================================
-   FIXED: SEPARATORS THAT DO NOT GLOW ON HOVER
-   ================================================ */
+/* separators */
 .header-nav a + a::before {
   content: "-";
   margin: 0 10px;
-  color: rgba(255, 255, 255, 0.6);  /* dimmer */
-  text-shadow: none !important;     /* NEVER glow */
-  pointer-events: none;             /* ignore hover */
-  filter: none !important;          /* stays clean */
+  color: rgba(255, 255, 255, 0.6);
+  text-shadow: none !important;
+  pointer-events: none;
+  filter: none !important;
 }
 
-/* ================================================
-   HOVER — ONLY THE TEXT GLOWS (NOT THE DASHES)
-   ================================================ */
+/* hover effect (only text glows) */
 .header-nav a:hover {
   transform: translateY(-1px);
   color: #ffffff;
@@ -115,7 +116,7 @@
     0 0 18px rgba(255, 255, 255, 0.8);
 }
 
-/* active (neutralized) */
+/* active (neutral) */
 .header-nav a.active {
   text-shadow:
     0 0 3px rgba(0, 0, 0, 0.8),
@@ -127,8 +128,105 @@
 }
 
 /* =======================
-   RESPONSIVE
+   AUTH BUTTONS
    ======================= */
+.header-auth {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 0 0 auto;
+}
+
+/* Login = glass */
+.header-auth .login-btn {
+  font-family: "BOUNDY", sans-serif;
+  text-decoration: none;
+
+  padding: 10px 18px;
+  border-radius: 999px;
+
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.10);
+  border: 1px solid rgba(255, 255, 255, 0.30);
+  backdrop-filter: blur(10px);
+
+  text-shadow:
+    0 0 3px rgba(0, 0, 0, 0.8),
+    0 0 6px rgba(0, 0, 0, 0.6);
+
+  transition: transform 0.18s ease, background 0.18s ease, box-shadow 0.18s ease;
+}
+
+.header-auth .login-btn:hover {
+  transform: translateY(-1px);
+  background: rgba(255, 255, 255, 0.18);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.45);
+}
+
+/* Sign up = premium green */
+.header-auth .signup-btn {
+  font-family: "BOUNDY", sans-serif;
+  text-decoration: none;
+
+  padding: 10px 20px;
+  border-radius: 999px;
+
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+
+  color: #ffffff;
+  background: linear-gradient(
+    180deg,
+    rgba(80, 220, 110, 0.95),
+    rgba(30, 150, 60, 0.95)
+  );
+  border: 1px solid rgba(120, 255, 150, 0.55);
+
+  box-shadow:
+    0 14px 28px rgba(0, 0, 0, 0.55),
+    0 0 18px rgba(120, 255, 150, 0.25);
+
+  transition: transform 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
+}
+
+.header-auth .signup-btn:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.08);
+  box-shadow:
+    0 16px 34px rgba(0, 0, 0, 0.65),
+    0 0 22px rgba(120, 255, 150, 0.35);
+}
+
+/* =======================
+   RESPONSIVE: any screen size
+   ======================= */
+@media (max-width: 1024px) {
+  .header-inner {
+    padding: 0 18px;
+    gap: 8px;
+  }
+
+  .header-nav a {
+    font-size: 18px;
+  }
+
+  .header-auth .login-btn,
+  .header-auth .signup-btn {
+    font-size: 13px;
+    padding: 8px 12px;
+  }
+}
+
+/* On small screens:
+   - keep everything visible
+   - nav becomes scrollable row */
 @media (max-width: 768px) {
   .header-card {
     padding: 6px 0;
@@ -136,11 +234,18 @@
 
   .header-inner {
     padding: 0 12px;
+    gap: 8px;
+  }
+
+  .header-nav-wrapper {
+    max-width: 100%;
   }
 
   .header-nav {
+    max-width: 100%;
     overflow-x: auto;
     scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
   }
 
   .header-nav::-webkit-scrollbar {
@@ -150,5 +255,35 @@
   .header-nav a {
     font-size: 12px;
     padding: 4px 4px;
+    letter-spacing: 0.10em;
+  }
+
+  .header-nav a + a::before {
+    margin: 0 6px;
+  }
+
+  .header-auth .login-btn,
+  .header-auth .signup-btn {
+    font-size: 12px;
+    padding: 8px 10px;
+    letter-spacing: 0.08em;
+  }
+}
+
+/* ultra small screens */
+@media (max-width: 420px) {
+  .header-inner {
+    padding: 0 8px;
+    gap: 6px;
+  }
+
+  .header-auth {
+    gap: 6px;
+  }
+
+  .header-auth .login-btn,
+  .header-auth .signup-btn {
+    padding: 7px 9px;
+    font-size: 11px;
   }
 }

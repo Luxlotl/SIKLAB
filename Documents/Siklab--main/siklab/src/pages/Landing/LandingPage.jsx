@@ -4,6 +4,7 @@ import CollectibleSection from "./CollectiblesSection";
 import MapSection from "./MapSection";
 import DownloadSection from "./DownloadSection";
 import ScenerySection from "./ScenerySection";
+import AboutSection from "./AboutSection";
 
 const LandingPage = () => {
   return (
@@ -11,6 +12,7 @@ const LandingPage = () => {
       <HeroSection />
       <ScenerySection />
       <DownloadSection />
+      <AboutSection />
       <CollectibleSection />
       <MapSection />
     </MainLayout>

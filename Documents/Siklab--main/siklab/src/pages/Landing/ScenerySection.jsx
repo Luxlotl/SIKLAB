@@ -31,7 +31,7 @@ const SCENES = [
   },
   {
     id: 5,
-    name: "Malolos Church",
+    name: "Malacañang",
     image: malacanImg,},
 ];
 
