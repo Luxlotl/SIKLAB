@@ -16,15 +16,17 @@ body {
   min-height: 100vh;
   position: relative;
 
-  background-image: url("../assets/images/game2.jpg");
+  background:
+    radial-gradient(circle at 10% 20%, rgba(150, 0, 255, 0.9), transparent 40%),
+    radial-gradient(circle at 85% 15%, rgba(0, 150, 255, 0.9), transparent 45%),
+    radial-gradient(circle at 50% 90%, rgba(0, 255, 200, 0.6), transparent 50%),
+    linear-gradient(180deg, #020208 0%, #070718 50%, #020208 100%);
 
-  /* ⭐ SET SPECIFIC SIZE HERE */
-  background-size: cover;
-
-  background-repeat: no-repeat;
-  background-position: center;
   background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
+
 
 
 /* PAGE BACKGROUND WRAPPER (no bg here anymore) */
