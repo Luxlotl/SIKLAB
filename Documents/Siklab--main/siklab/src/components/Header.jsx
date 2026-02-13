@@ -1,50 +1,51 @@
+import { useState } from "react";
+import AuthModal from "./Authmodal";
 import "../styles/header.css";
 
 const Header = () => {
+  const [authOpen, setAuthOpen] = useState(false);
+
   return (
-    <header className="header">
-      <div className="header-card">
-        <div className="header-inner">
+    <>
+      <header className="header">
+        <div className="header-card">
+          <div className="header-inner">
 
-          {/* LEFT SIDE NAV */}
-          <nav className="header-nav">
-            <a href="#home">Home</a>
-            <a href="#download">Download</a>
-            <a href="#about">About</a>
-            <a href="#gameplay">Gameplay</a>
-<a
-  href="#collectibles"
-  onClick={(e) => {
-    e.preventDefault();
+            <nav className="header-nav">
+              <a href="#home">Home</a>
+              <a href="#download">Download</a>
+              <a href="#about">About</a>
+              <a href="#gameplay">Gameplay</a>
+              <a href="#collectibles">Collectibles</a>
+              <a href="#devs">Devs</a>
+              <a href="#feedback">Feedback</a>
+            </nav>
 
-    const section = document.getElementById("collectibles");
-    if (!section) return;
+            <div className="header-auth">
+              <button
+                className="login-btn"
+                onClick={() => setAuthOpen(true)}
+              >
+                Login
+              </button>
 
-    // scroll to section
-    section.scrollIntoView({ behavior: "smooth", block: "start" });
+              <button
+                className="signup-btn"
+                onClick={() => setAuthOpen(true)}
+              >
+                Sign Up
+              </button>
+            </div>
 
-    // restart animation every click
-    section.classList.remove("show");
-    void section.offsetWidth; // force reflow
-    section.classList.add("show");
-  }}
->
-  Collectibles
-</a>
-            <a href="#devs">Devs</a>
-            <a href="#feedback">Feedback</a>
-          </nav>
-
-          {/* RIGHT SIDE AUTH BUTTONS */}
-          <div className="header-auth">
-  <a href="#login" className="login-btn">Login</a>
-  <a href="#signup" className="signup-btn">Sign Up</a>
-</div>
-
-
+          </div>
         </div>
-      </div>
-    </header>
+      </header>
+
+      <AuthModal
+        isOpen={authOpen}
+        onClose={() => setAuthOpen(false)}
+      />
+    </>
   );
 };
 

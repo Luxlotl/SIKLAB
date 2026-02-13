@@ -14,7 +14,6 @@ const LandingPage = () => {
       <DownloadSection />
       <AboutSection />
       <CollectibleSection />
-      <MapSection />
     </MainLayout>
 
     
